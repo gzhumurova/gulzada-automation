@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Автоматизация бизнеса | Гульзада Габиденова</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #4a5568;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: background 0.3s;
+            margin: 0.5rem;
+        }
+
+        .cta-button:hover {
+            background: #5568d3;
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            border: 2px solid #667eea;
+            color: #667eea;
+        }
+
+        .cta-button.secondary:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .section {
+            padding: 3rem 1rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            color: #2d3748;
+        }
+
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .benefit-card {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0,0,0,0.15);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #2d3748;
+        }
+
+        .benefit-card p {
+            color: #4a5568;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-top: 4px solid #667eea;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #2d3748;
+        }
+
+        .service-price {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+            margin: 1rem 0;
+        }
+
+        .service-card p {
+            color: #4a5568;
+            margin-bottom: 1rem;
+        }
+
+        .service-features {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .service-features li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #4a5568;
+        }
+
+        .service-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .process {
+            background: #f7fafc;
+            padding: 3rem 1rem;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .process-step {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            line-height: 50px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .process-step h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #2d3748;
+        }
+
+        .process-step p {
+            color: #4a5568;
+        }
+
+        .about {
+            background: white;
+            padding: 3rem 1rem;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+
+        .about-content p {
+            color: #4a5568;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .experience-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .experience-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #4a5568;
+        }
+
+        .experience-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 4rem 1rem;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .footer {
+            background: #2d3748;
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            margin: 1rem 0;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        .social-links {
+            margin: 1.5rem 0;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .services {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <h1>АВТОМАТИЗАЦИЯ БИЗНЕСА</h1>
+        <p>Гульзада Габиденова | Актау, Казахстан</p>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div style="max-width: 600px; margin: 0 auto 2rem;">
+            <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 500px;">
+                <!-- Gradient Background -->
+                <defs>
+                    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#667eea;stop-opacity:0.2" />
+                        <stop offset="100%" style="stop-color:#764ba2;stop-opacity:0.2" />
+                    </linearGradient>
+                </defs>
+                <rect width="400" height="300" fill="url(#bgGradient)" rx="20"/>
+                
+                <!-- Chat bubbles representing automation -->
+                <circle cx="80" cy="100" r="40" fill="#667eea" opacity="0.3"/>
+                <circle cx="200" cy="80" r="50" fill="#764ba2" opacity="0.4"/>
+                <circle cx="320" cy="120" r="45" fill="#667eea" opacity="0.3"/>
+                
+                <!-- Robot/Agent icon in center -->
+                <g transform="translate(150, 120)">
+                    <!-- Head -->
+                    <rect x="20" y="0" width="60" height="60" rx="10" fill="#667eea"/>
+                    <!-- Eyes -->
+                    <circle cx="40" cy="25" r="5" fill="white"/>
+                    <circle cx="60" cy="25" r="5" fill="white"/>
+                    <!-- Smile -->
+                    <path d="M 35 40 Q 50 48 65 40" stroke="white" stroke-width="3" fill="none" stroke-linecap="round"/>
+                    <!-- Antenna -->
+                    <line x1="50" y1="0" x2="50" y2="-15" stroke="#764ba2" stroke-width="3"/>
+                    <circle cx="50" cy="-15" r="5" fill="#764ba2"/>
+                </g>
+                
+                <!-- Message icons -->
+                <text x="70" y="110" font-size="20">💬</text>
+                <text x="310" y="130" font-size="20">⚡</text>
+                <text x="190" y="90" font-size="20">🤝</text>
+            </svg>
+        </div>
+        <h2>Умные ассистенты и автоматизация для вашего бизнеса</h2>
+        <p>Сократите рутину на 70%. Освободите время для роста. Внедрение за 2-4 недели.</p>
+        <a href="https://t.me/gulzada_automate_bot" class="cta-button">Получить консультацию в Telegram</a>
+        <a href="#services" class="cta-button secondary">Посмотреть услуги</a>
+    </div>
+
+    <!-- Benefits Section -->
+    <div class="section">
+        <div class="container">
+            <h2 class="section-title">Что вы получите</h2>
+            <div class="benefits">
+                <div class="benefit-card">
+                    <div class="benefit-icon">⚡</div>
+                    <h3>Экономия времени</h3>
+                    <p>Автоматизация повторяющихся задач освободит время для важных дел</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🤖</div>
+                    <h3>Доступность 24/7</h3>
+                    <p>Умные ассистенты работают круглосуточно, общаются как живые менеджеры</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🚀</div>
+                    <h3>Быстрое внедрение</h3>
+                    <p>От идеи до работающего решения за 2-4 недели</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🛠️</div>
+                    <h3>Техподдержка</h3>
+                    <p>Поддержка после запуска от 20,000₸/месяц в зависимости от количества агентов</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <div class="section" id="services" style="background: #f7fafc;">
+        <div class="container">
+            <h2 class="section-title">Услуги и цены</h2>
+            <div class="services">
+                
+                <div class="service-card">
+                    <h3>Умные ассистенты по продажам</h3>
+                    <div class="service-price">от 50,000₸</div>
+                    <p>Telegram или WhatsApp ассистенты с искусственным интеллектом</p>
+                    <ul class="service-features">
+                        <li>Автоответы клиентам 24/7</li>
+                        <li>Прием заказов и бронирований</li>
+                        <li>Квалификация лидов</li>
+                        <li>Интеграция с вашими системами</li>
+                        <li>Общаются как живые менеджеры</li>
+                    </ul>
+                    <a href="https://t.me/gulzada_automate_bot" class="cta-button">Заказать ассистента</a>
+                </div>
+
+                <div class="service-card">
+                    <h3>Автоматизация процессов</h3>
+                    <div class="service-price">от 100,000₸</div>
+                    <p>Настройка автоматических рабочих процессов на платформе n8n</p>
+                    <ul class="service-features">
+                        <li>Интеграция сервисов (CRM, мессенджеры, таблицы)</li>
+                        <li>Автоматические уведомления</li>
+                        <li>Обработка данных</li>
+                        <li>Синхронизация систем</li>
+                        <li>Экономия до 70% времени</li>
+                    </ul>
+                    <a href="https://t.me/gulzada_automate_bot" class="cta-button">Узнать подробнее</a>
+                </div>
+
+                <div class="service-card">
+                    <h3>Консультация</h3>
+                    <div class="service-price">5,000₸</div>
+                    <p>30 минут разбора вашей ситуации и плана автоматизации</p>
+                    <ul class="service-features">
+                        <li>Анализ текущих процессов</li>
+                        <li>Рекомендации по оптимизации</li>
+                        <li>Техническая экспертиза</li>
+                        <li>Roadmap внедрения</li>
+                        <li>Расчёт стоимости проекта</li>
+                    </ul>
+                    <a href="https://t.me/gulzada_automate_bot" class="cta-button">Записаться</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Process Section -->
+    <div class="process">
+        <div class="container">
+            <h2 class="section-title">Как мы работаем</h2>
+            <div class="process-steps">
+                
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>Консультация</h3>
+                    <p>Обсуждаем вашу задачу и цели. Бесплатно, 20-30 минут в Telegram.</p>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>Решение</h3>
+                    <p>Предлагаю оптимальный вариант с расчетом стоимости и сроков.</p>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>Разработка</h3>
+                    <p>Создаю и настраиваю автоматизацию. Срок: 2-4 недели.</p>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3>Запуск</h3>
+                    <p>Внедряем, тестируем, настраиваем работу ассистента.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <div class="about">
+        <div class="container">
+            <div class="about-content">
+                <h2 class="section-title">О специалисте</h2>
+                <h3>Гульзада Габиденова</h3>
+                <p><strong>Специалист по автоматизации бизнес-процессов</strong></p>
+                
+                <p>Помогаю бизнесу экономить время и деньги через умных ассистентов и автоматизацию. Работаю с платформами n8n, Google Gemini, GPT, Claude, OpenAI. Создаю Telegram и WhatsApp ассистентов-менеджеров, которые отвечают 24/7 и общаются как живой человек.</p>
+
+                <p><strong>Опыт:</strong></p>
+                <ul class="experience-list">
+                    <li>Разработка умных ассистентов для Telegram и WhatsApp</li>
+                    <li>Автоматизация процессов обработки заказов и бронирований</li>
+                    <li>Создание агентов с памятью клиентов и квалификацией лидов</li>
+                    <li>Работа с платформами n8n, Google Gemini, GPT, Claude</li>
+                </ul>
+
+                <p><strong>Локация:</strong> Актау, Казахстан<br>
+                Работаю удалённо по всему Казахстану и СНГ</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="cta-section">
+        <div class="container">
+            <h2>Готовы автоматизировать ваш бизнес?</h2>
+            <p>Получите бесплатную консультацию и план автоматизации</p>
+            <a href="https://t.me/gulzada_automate_bot" class="cta-button" style="background: white; color: #667eea;">Написать в Telegram</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="container">
+            <h3 style="margin-bottom: 1rem;">АВТОМАТИЗАЦИЯ</h3>
+            
+            <div class="social-links">
+                <a href="https://t.me/gulzada_automate_bot" title="Telegram бот">📱 Telegram</a>
+                <a href="https://instagram.com/gulzada_gabidenkyzy" title="Instagram">📷 Instagram</a>
+            </div>
+
+            <div class="footer-links">
+                <a href="#services">Услуги</a>
+                <a href="https://t.me/gulzada_automate_bot">Контакты</a>
+            </div>
+
+            <p style="margin-top: 2rem; opacity: 0.7;">© 2024 Гульзада Габиденова. Все права защищены.</p>
+            <p style="opacity: 0.7;">Актау, Казахстан</p>
+        </div>
+    </div>
+
+</body>
+</html>
